@@ -1,6 +1,5 @@
 :root {
   --bg-color: rgb(20, 20, 20);
-  display: flex;
 }
 
 body {
@@ -17,33 +16,39 @@ body {
 #cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  max-width: 922px;
   width: calc(100% - 20px);
+  max-width: 916px;
+  gap: 8px;
 }
 
 .card {
-  background-color: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   height: 260px;
   width: 300px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   cursor: pointer;
   position: relative;
 }
 
+.card:hover::before {
+  opacity: 1;
+}
+
 .card::before {
-  border-radius: inherit;
-  content: "";
-  height: 100%;
-  left: 0px;
-  position: absolute;
-  top: 0px;
-  width: 100%;
-  z-index: 2;
   background: radial-gradient(
-    800px circle at 100px 100px,
+    800px circle at var(--mouse-x) var(--mouse-y),
     rgba(255, 255, 255, 0.06),
     transparent 40%
   );
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  border-radius: inherit;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 500ms;
 }
